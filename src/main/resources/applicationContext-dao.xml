@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans         http://www.springframework.org/schema/beans/spring-beans.xsd">  
+  <bean id="parentDAO" abstract="true"> 
+    <property name="sessionFactory" ref="sessionFactory"/> 
+  </bean>  
+  <bean id="employeeDAO" class="com._520it.pss.dao.impl.EmployeeDAOImpl" parent="parentDAO"/>  
+  <bean id="departmentDAO" class="com._520it.pss.dao.impl.DepartmentDAOImpl" parent="parentDAO"/>  
+  <bean id="roleDAO" class="com._520it.pss.dao.impl.RoleDAOImpl" parent="parentDAO"/>  
+  <bean id="permissionDAO" class="com._520it.pss.dao.impl.PermissionDAOImpl" parent="parentDAO"/>  
+  <bean id="systemMenuDAO" class="com._520it.pss.dao.impl.SystemMenuDAOImpl" parent="parentDAO"/>  
+  <bean id="brandDAO" class="com._520it.pss.dao.impl.BrandDAOImpl" parent="parentDAO"/>  
+  <bean id="supplierDAO" class="com._520it.pss.dao.impl.SupplierDAOImpl" parent="parentDAO"/>  
+  <bean id="productDAO" class="com._520it.pss.dao.impl.ProductDAOImpl" parent="parentDAO"/>  
+  <bean id="orderBillDAO" class="com._520it.pss.dao.impl.OrderBillDAOImpl" parent="parentDAO"/>  
+  <bean id="depotDAO" class="com._520it.pss.dao.impl.DepotDAOImpl" parent="parentDAO"/>  
+  <bean id="productStockDAO" class="com._520it.pss.dao.impl.ProductStockDAOImpl" parent="parentDAO"/>  
+  <bean id="stockIncomeBillDAO" class="com._520it.pss.dao.impl.StockIncomeBillDAOImpl" parent="parentDAO"/>  
+  <bean id="clientDAO" class="com._520it.pss.dao.impl.ClientDAOImpl" parent="parentDAO"/>  
+  <bean id="stockOutcomeBillDAO" class="com._520it.pss.dao.impl.StockOutcomeBillDAOImpl" parent="parentDAO"/>  
+  <bean id="chartDAO" class="com._520it.pss.dao.impl.ChartDAOImpl" parent="parentDAO"/>  
+  <bean id="saleAccountDAO" class="com._520it.pss.dao.impl.SaleAccountDAOImpl" parent="parentDAO"/>
+</beans>

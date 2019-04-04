@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com._520it.pss.domain">
+	<import class="com._520it.pss.vo.SaleChartVO" rename="SaleChartVO"/>
+	<class name="SaleAccount">
+		<id name="id">
+			<generator class="native" />
+		</id>
+		<many-to-one name="client" column="client_id"/>
+		<property name="costAmount"/>
+		<property name="costPrice"/>
+		<property name="number"/>
+		<many-to-one name="product" column="product_id"/>
+		<property name="saleAmount"/>
+		<property name="salePrice"/>
+		<many-to-one name="saler" column="saler_id"/>
+		<property name="vdate"/>
+	</class>
+
+
+</hibernate-mapping>

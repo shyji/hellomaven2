@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="/style/zTreeStyle.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/js/jquery/jquery.js"></script>
+    <script type="text/javascript" src="/js/plugins/zTree/js/jquery.ztree.core-3.4.min.js"></script>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+    <script type="text/javascript">
+        $(function(){
+
+            var datas={
+                "business":[{id:1,pId:0,title:"业务模块",sn:"business",isParent:true}],
+                "systemManage":[{id:1,pId:0,title:"系统管理",sn:"systemManage",isParent:true}],
+                "charts":[{id:1,pId:0,title:"系统报表",sn:"charts",isParent:true}]
+            }
+            var setting = {
+                async:{
+                    enable:true,
+                    url:"systemMenu_loadCurrentEmployeeMenus.action",
+                    autoParam:["sn=qo.parentSn"]
+                },
+                data: {
+                    key:{
+                        name:"title",
+                        title:"title"
+                    },
+                    simpleData: {
+                        enable: true,
+                    }
+                }
+            };
+            $.fn.zTree.init($("#treeDemo"),setting,datas["business"]);
+
+
+        })
+
+
+    </script>
+</head>
+<body>
+<div >
+    <ul id="treeDemo" class="ztree"></ul>
+</div>
+<div id="vcomments"></div>
+<script>
+    new Valine({
+        el: '#vcomments' ,
+        appId: 'KouPNLwQSB7aGRby2ghnjqo6-gzGzoHsz',
+        appKey: 'v2kpWaCM4wkNcpRrtJjkVMTS',
+
+        notify:false,
+        verify:false,
+        avatar:'mm',
+        placeholder: 'just go go'
+    });
+</script>
+</body>
+</html>

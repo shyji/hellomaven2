@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <constant name="struts.devMode" value="true" />
+	<constant name="struts.i18n.encoding" value="UTF-8"/>
+	<constant name="struts.configuration.xml.reload" value="true"/>
+	<constant name="struts.ui.theme" value="simple"/>
+    <package name="default" namespace="/" extends="struts-default,json-default">
+	<interceptors>
+		<interceptor name="checkLogin" class="com._520it.pss.web.interceptor.CheckLoginInterceptor"/>
+		<interceptor name="securityPermission" class="com._520it.pss.web.interceptor.SecurityInterceptor"/>
+		<interceptor-stack name="pssStack">
+			<interceptor-ref name="checkLogin"/>
+			<interceptor-ref name="securityPermission"/>
+
+			<interceptor-ref name="store">
+				<param name="operationMode" >AUTOMATIC</param>
+
+			</interceptor-ref>
+			<interceptor-ref name="paramsPrepareParamsStack"/>
+		</interceptor-stack>
+	</interceptors>
+		<default-interceptor-ref name="pssStack"/>
+
+		<!-- 全局视图 -->
+		<global-results>
+			<result name="login">/login.jsp</result>
+			<result name="nopermission">/WEB-INF/views/common/nopermission.jsp</result>
+			<result name="error">/WEB-INF/views/common/error.jsp</result>
+		</global-results>
+
+		<!-- 全局的异常映射 -->
+		<global-exception-mappings>
+			<!-- 应用中出现异常,就跳转到error全局视图 -->
+			<exception-mapping result="error" exception="java.lang.Exception"/>
+		</global-exception-mappings>
+		<action name="login_*" class="loginAction" method="{1}">
+			<interceptor-ref name="paramsPrepareParamsStack"/>
+			<result type="redirectAction">main</result>
+		</action>
+       <action name="main">
+       		<result>/WEB-INF/views/main.jsp</result>
+       </action>
+		<action name="systemMenu_*" class="systemMenuAction" method="{1}">
+			<result name="success" type="redirectAction">
+				<param name="actionName" >systemMenu</param>
+				<param name="qo.parentId">${systemMenu.parent.id}</param>
+			</result>
+			<result name="list">/WEB-INF/views/systemMenu/list.jsp</result>
+			<result name="input">/WEB-INF/views/systemMenu/input.jsp</result>
+			<result name="jsonResult" type="json">
+				<param name="root">rootObj</param>
+			</result>
+       </action>
+
+		<action name="*_*" class="{1}Action" method="{2}">
+			<result name="success" type="redirectAction">{1}</result>
+			<result name="list">/WEB-INF/views/{1}/list.jsp</result>
+			<result name="input">/WEB-INF/views/{1}/input.jsp</result>
+			<result name="{2}">/WEB-INF/views/{1}/{2}.jsp</result>
+
+		</action>
+	
+    </package>
+
+    <!-- Add packages here -->
+
+</struts>

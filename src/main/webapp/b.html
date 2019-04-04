@@ -1,0 +1,32 @@
+<HTML>
+<HEAD>
+    <meta http-equiv="content-Type" content="text/html;charset=utf-8">
+    <TITLE></TITLE>
+    <style></style>
+
+    <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        var iFrameVair = "aaaaaaaaaaaaaaaaaaaa";
+        function UpdateParent() {
+            var _parentWin = window.opener;
+            _parentWin.form1.username.value = "xxxx";
+            window.close();
+        }
+        function childInvokeParent() {
+            var parentVairous = window.opener.window.parentVairous;
+            alert(parentVairous);
+        }
+    </script>
+</HEAD>
+<BODY>
+<form name="form1" id="form1">
+    <p></p>
+    <p align="center">
+        <input type="button" onclick="UpdateParent();" name="button" id="button" value="bbbbbbbbbbbbbbb" />
+        <input type="button" name="button2" id="button2" value="aaaaaaaaaaaaaaaaaaaa" onclick="childInvokeParent();" />
+    </p>
+    <p></p>
+</form>
+</BODY>
+</HTML>

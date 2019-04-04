@@ -1,0 +1,38 @@
+<HTML>
+<HEAD>
+    <meta http-equiv="content-Type" content="text/html;charset=utf-8">
+    <TITLE></TITLE>
+    <style></style>
+
+    <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        /** 为测试IFrame子窗口调用父窗口的全局变量而添加的测试变量 */
+        var parentVairous = "为测试IFrame子窗口调用父窗口的全局变量而添加的测试变量";
+
+        /**
+         *  因为不同于IFrame（IFrame有id,window.open()与IFrame的父子窗口的模式不同）,
+         *  所以当是通过window.open()方法打开一个新窗口使, 必须有一个新窗口的对象
+         *  当然必须先让子窗口弹出来, 才能调用子窗口中的变量, 否则抛出异常
+         */
+        var OpenWindow;
+
+        function openSubWin() {
+            OpenWindow = window.open('b.html', 'newwindow', 'height=1024, width=1300, top=0, left=0, toolbar=no, menubar=yes, scrollbars=yes,resizable=yes,location=no, status=no');
+        }
+        function parentInvokeChild() {
+            if (OpenWindow)//当然必须先让子窗口弹出来, 才能调用子窗口中的变量, 否则抛出异常
+            {
+                alert(OpenWindow.iFrameVair);
+            }
+        }
+    </script>
+</HEAD>
+<BODY>
+<form name="form1" id="form1">
+    <input type="text" name="username" id="username" />
+    <input type="button" value="弹出子页面" onclick="openSubWin()" />
+    <input type="button" value="测试调用弹出窗口中的全局变量" onclick="parentInvokeChild()" />
+</form>
+</BODY>
+</HTML>
